@@ -3,7 +3,9 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import styled from 'styled-components';
 
+
 const Test: NextPage = () => {
+    var Latex = require('react-latex');
     const Title = styled.h1`
         color: red;
     `;
@@ -21,6 +23,9 @@ const Test: NextPage = () => {
                         Welcome to <a href="https://nextjs.org">Next.js!</a>
                     </h1>
                 </Title>
+                <h3>
+                    <Latex displayMode={true}>$$(3\times 4) \div (5-3)$$</Latex>
+                </h3>
             </main>
         </div>
     );
