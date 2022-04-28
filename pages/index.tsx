@@ -39,22 +39,27 @@ const Home: NextPage = () => {
 
   // console.log(doc);
   return (
-    <Container>
-      <Main>
-        {/* <form> */}
-        <Form>
-          <h1 className={styles.title}>LaTex変換</h1>
+    // <Container>
+    <div className={styles.container}>
+      {/* <Main> */}
+      <main className={styles.main}>
+        <form>
+          {/* <Form> */}
+          <h1>LaTex変換</h1>
           <label>
             式
             <input type="text" onChange={handleChange} name="name" />
           </label>
-        </Form>
-        {/* </form> */}
+
+          {/* </Form> */}
+        </form>
         <div>
           <Latex>{text}</Latex>
         </div>
-      </Main>
-    </Container>
+        {/* </Main> */}
+      </main>
+      {/* </Container> */}
+    </div>
   );
 
 }
