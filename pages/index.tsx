@@ -28,17 +28,28 @@ const Home: NextPage = () => {
     align-items: center;
   `;
 
+  const Form = styled.form`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 500px;
+  `;
+
+
   // console.log(doc);
   return (
     <Container>
       <Main>
-        <form>
+        {/* <form> */}
+        <Form>
           <h1 className={styles.title}>LaTex変換</h1>
           <label>
             式
             <input type="text" onChange={handleChange} name="name" />
           </label>
-        </form>
+        </Form>
+        {/* </form> */}
         <div>
           <Latex>{text}</Latex>
         </div>
