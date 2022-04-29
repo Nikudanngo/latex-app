@@ -3,8 +3,6 @@ import styles from '../styles/Home.module.css'
 import Link from 'next/link';
 
 
-// const text = `$f(x)=-2\\cos ^{2}x+2\\sin x+3$, $x\\in [\\frac{\\pi }{6}, \\frac{5\\pi }{6}]$`;
-const title = "LaTex変換";
 
 export default function HOME() {
     return (
@@ -19,7 +17,7 @@ export default function HOME() {
                 <h1 className={styles.title}>
                     Welcome to <a href="https://nextjs.org">Next.js!</a>
                 </h1>
-                <Link href="/LatexApp">
+                <Link href="/">
                     <a>Go to test page</a>
                 </Link>
 
