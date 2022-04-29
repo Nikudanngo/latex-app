@@ -7,8 +7,15 @@ import styled from "styled-components"
 
 const Container = styled.div`
   padding: 0 2rem;
+  background: #ccc5b9;
 `;
-
+const Title = styled.h1`
+  font-size: 2rem;
+  font-weight: bold;
+  color: #403d39;
+  margin: 0;
+  padding: 1rem 0;
+`;
 const Main = styled.main`
   min-height: 100vh;
   padding: 4rem 0;
@@ -18,7 +25,6 @@ const Main = styled.main`
   justify-content: center;
   align-items: center;
 `;
-
 const Equation = styled.textarea`
   font-size: 0.9rem;
   font-family: "kosugi Maru";
@@ -30,6 +36,17 @@ const Equation = styled.textarea`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+const Render = styled.div`
+  margin: 1rem;
+  padding: 1.5rem;
+  background: #fafafa;
+  color: inherit;
+  text-decoration: none;
+  border: 2px solid #eaeaea;
+  border-radius: 10px;
+  transition: color 0.15s ease, border-color 0.15s ease;
+  max-width: 1000px;
 `;
 
 
@@ -51,13 +68,11 @@ const LaTex: NextPage = () => {
   return (
     <Container>
       <Main>
-        <h1>LaTex数式変換</h1>
-        <label>
-          <Equation onChange={handleChange} defaultValue={quationExample} />
-        </label>
-        <div>
+        <Title>LaTex数式変換</Title>
+        <Equation onChange={handleChange} defaultValue={quationExample} />
+        <Render>
           <Latex>{text}</Latex>
-        </div>
+        </Render>
       </Main>
     </Container>
   );
