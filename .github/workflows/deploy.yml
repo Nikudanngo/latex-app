@@ -1,28 +1,24 @@
+name: deploy to github pages
 on:
   push:
-    branches: main
-
+    branches:
+      - main
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Transpile
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2.1.0
+        with:
+          node-version: 12.x
+      - name: install
+        run: yarn install
+      - name: build
         run: |
-          npm install
-          npm run build
-        env:
-          CI: true
-          URL_PREFIX: <REPO_NAME>
-          GITHUB_PAGES: true
-
-      - name: Export
-        run: |
-          npm run export
+          yarn run build
           touch out/.nojekyll
-
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v2.8.0
-        env:
-          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          PUBLISH_BRANCH: gh-pages
-          PUBLISH_DIR: ./out
+      - name: deploy
+        uses: peaceiris/actions-gh-pages@v3.6.4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
