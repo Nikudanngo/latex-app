@@ -4,13 +4,14 @@ import "katex/dist/katex.min.css";
 import Latex from "react-latex-next";
 import { useState } from "react";
 import styled from "styled-components"
+import Link from 'next/link';
 
 const Container = styled.div`
   padding: 0 2rem;
   background: #ccc5b9;
 `;
 const Title = styled.h1`
-  font-size: 2rem;
+  font-size: 4rem;
   font-weight: bold;
   color: #403d39;
   margin: 0;
@@ -73,6 +74,11 @@ const LaTex: NextPage = () => {
         <Render>
           <Latex>{text}</Latex>
         </Render>
+        <p>
+          <Link href="/home">
+            <a>このサイトについて</a>
+          </Link>
+        </p>
       </Main>
     </Container>
   );
