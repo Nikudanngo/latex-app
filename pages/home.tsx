@@ -90,7 +90,7 @@ export default function HOME() {
 
 
                 <Text>
-                    Made by{' '}
+                    Made with{' '}
                     <Hober href="https://nextjs.org/">
                         <Sp>Next.js</Sp>
                     </Hober> ,{' '}
