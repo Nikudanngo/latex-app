@@ -50,17 +50,27 @@ const Grid = styled.div`
     flex-wrap: wrap;
     max-width: 800px;
 `;
-const GridItem = styled.div`
+const Card = styled.a`
     margin: 1rem;
     padding: 1.5rem;
     text-align: left;
     color: inherit;
     text-decoration: none;
-    border: 1px solid #eaeaea;
+    border: 2px solid #668262;
     border-radius: 10px;
     transition: color 0.15s ease, border-color 0.15s ease;
     max-width: 300px;
+    &:hover,
+    &:focus,
+    &:active {
+        color: #0070f3;
+        border-color: #0070f3;
+    }
 `;
+const Sp = styled.span`
+  display: inline-block;
+`;
+
 export default function HOME() {
     return (
         <Container>
@@ -82,27 +92,27 @@ export default function HOME() {
                 <Text>
                     Made by{' '}
                     <Hober href="https://nextjs.org/">
-                        Next.js
+                        <Sp>Next.js</Sp>
                     </Hober> ,{' '}
                     <Hober href="https://github.com/harunurhan/react-latex-next">
-                        react-latex-next
+                        <Sp>react-latex-next</Sp>
                     </Hober>
                     {' '}and{' '}
                     <Hober href="https://styled-components.com/">
-                        styled-components
+                        <Sp>styled-components</Sp>
                     </Hober>
                 </Text>
 
                 <Grid>
-                    <a href="https://github.com/Nikudanngo/latex-app" className={styles.card}>
+                    <Card href="https://github.com/Nikudanngo/latex-app">
                         <h2>Source code &rarr;</h2>
                         <p>The source code of next.js is available on github.</p>
-                    </a>
+                    </Card>
 
-                    <a href="https://firebase.google.com/" className={styles.card}>
+                    <Card href="https://firebase.google.com/">
                         <h2>Firebase Hosting&rarr;</h2>
                         <p>This site is published by firebase hosting.</p>
-                    </a>
+                    </Card>
                 </Grid>
             </Main>
         </Container>

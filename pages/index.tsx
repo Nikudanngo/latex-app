@@ -1,5 +1,4 @@
 import type { NextPage } from 'next'
-import { ServerStyleSheet } from 'styled-components';
 import "katex/dist/katex.min.css";
 import Latex from "react-latex-next";
 import { useState } from "react";
@@ -11,7 +10,8 @@ const Container = styled.div`
   background: #ccc5b9;
 `;
 const Title = styled.h1`
-  font-size: 4rem;
+  font-size: 3rem;
+  text-align: center;
   font-weight: bold;
   color: #403d39;
   margin: 0;
@@ -29,7 +29,7 @@ const Main = styled.main`
 const Equation = styled.textarea`
   font-size: 0.9rem;
   font-family: "kosugi Maru";
-  width: 600px;
+  width: 100%;
   height: 10rem;
   max-width: 1000px;
   margin: 0 auto;
@@ -49,10 +49,24 @@ const Render = styled.div`
   transition: color 0.15s ease, border-color 0.15s ease;
   max-width: 1000px;
 `;
+const Sp = styled.span`
+  display: inline-block;
+`;
+const Hober = styled.a`
+    color: #351431;
+    text-decoration: none;
+    cursor: pointer;
+    &:hover ,
+    &:focus {
+        color: palevioletred;
+    }
+    &:active {
+        color: red;
+    }
+`;
 
 
 const LaTex: NextPage = () => {
-  const sheet = new ServerStyleSheet();
   const [text, setText] = useState<any>('ここに式が表示されます.');
   const quationExample = `
   f(x) = f(0) + f'(0)x + \\frac{f''(0)}{2!}x^2 + \\frac{f'''(0)}{3!}x^3 + \\frac{f^{(3}(0)}{4!}x^4 + \\cdots \\\\
@@ -69,14 +83,14 @@ const LaTex: NextPage = () => {
   return (
     <Container>
       <Main>
-        <Title>LaTex数式変換</Title>
+        <Title><Sp>LaTex</Sp><Sp>数式<Sp>変換</Sp></Sp></Title>
         <Equation onChange={handleChange} defaultValue={quationExample} />
         <Render>
           <Latex>{text}</Latex>
         </Render>
         <p>
           <Link href="/home">
-            <a>このサイトについて</a>
+            <Hober>このサイトについて</Hober>
           </Link>
         </p>
       </Main>
