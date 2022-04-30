@@ -1,0 +1,28 @@
+on:
+  push:
+    branches: main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Transpile
+        run: |
+          npm install
+          npm run build
+        env:
+          CI: true
+          URL_PREFIX: <REPO_NAME>
+          GITHUB_PAGES: true
+
+      - name: Export
+        run: |
+          npm run export
+          touch out/.nojekyll
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v2.8.0
+        env:
+          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: ./out
