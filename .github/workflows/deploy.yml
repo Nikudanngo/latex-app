@@ -5,34 +5,28 @@ on:
  push:
    branches:
      - main
-
+     
 jobs:
- build:
-   runs-on: ubuntu-20.04
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Transpile
+        run: |
+          npm install
+          npm run build
+        env:
+          CI: true
+          URL_PREFIX: <REPO_NAME>
+          GITHUB_PAGES: true
 
-   steps:
-     # main ブランチを取得する
-     - name: Checkout
-       uses: actions/checkout@v2
+      - name: Export
+        run: |
+          npm run export
+          touch out/.nojekyll
 
-     # Node.js のセットアップをする
-     - name: Setup Node
-       uses: actions/setup-node@v2
-       with:
-         node-version: 14.x
-         cache: yarn
-
-     # パッケージをインストールする
-     - name: Install dependencies
-       run: yarn --frozen-lockfile
-
-     # ビルドする
-     - name: Build
-       run: yarn build
-
-     # GitHub Pages にデプロイする
-     - name: Deploy
-       uses: peaceiris/actions-gh-pages@v3
-       with:
-         github_token: ${{ secrets.GITHUB_TOKEN }}
-         publish_dir: out
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v2.8.0
+        env:
+          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: ./out
