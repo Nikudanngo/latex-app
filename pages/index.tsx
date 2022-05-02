@@ -69,7 +69,7 @@ const Hober = styled.a`
 const LaTex: NextPage = () => {
   const [text, setText] = useState<any>('ここに式が表示されます.');
   const quationExample = `
-  f(x) = f(0) + f'(0)x + \\frac{f''(0)}{2!}x^2 + \\frac{f'''(0)}{3!}x^3 + \\frac{f^{(3}(0)}{4!}x^4 + \\cdots \\\\
+  f(x) = f(0) + f'(0)x + \\frac{f''(0)}{2!}x^2 + \\frac{f'''(0)}{3!}x^3 + \\frac{f^{(3)}(0)}{4!}x^4 + \\cdots \\\\
 
   \\hspace{8mm} = \\sum\\limits_{ k = 0 }^ { \\infty }f ^ {(k)}(0) \\frac{ x ^ k } { k! }
 
