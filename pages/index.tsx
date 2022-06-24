@@ -1,9 +1,10 @@
 import type { NextPage } from 'next'
 import "katex/dist/katex.min.css";
 import Latex from "react-latex-next";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components"
 import Link from 'next/link';
+import axios from 'axios';
 
 const Container = styled.div`
   padding: 0 2rem;
@@ -68,6 +69,7 @@ const Hober = styled.a`
 
 const LaTex: NextPage = () => {
   const [text, setText] = useState<any>('ここに式が表示されます.');
+  const [data, setData] = useState<any>([]);
   const quationExample = `
   f(x) = f(0) + f'(0)x + \\frac{f''(0)}{2!}x^2 + \\frac{f'''(0)}{3!}x^3 + \\frac{f^{(3)}(0)}{4!}x^4 + \\cdots \\\\
 
@@ -78,7 +80,15 @@ const LaTex: NextPage = () => {
   const handleChange = (e: any) => {
     setText(() => "$" + e.target.value + "$")
   }
+  const GetData = () => {
+    axios.get("https://mocaff.net/order").then((e) => {
+      setData(e.data);
+    })
+  }
 
+  useEffect(() => {
+    GetData();
+  }, [])
   // console.log(doc);
   return (
     <Container>
@@ -93,6 +103,13 @@ const LaTex: NextPage = () => {
             <Hober>このサイトについて</Hober>
           </Link>
         </p>
+        {data.map((e: any, i: number) => {
+          return (
+            <div key={i}>
+              {e.title}
+            </div>
+          )
+        })}
       </Main>
     </Container>
   );
