@@ -1,10 +1,10 @@
-import type { NextPage } from 'next'
+import type { NextPage } from "next";
 import "katex/dist/katex.min.css";
 import Latex from "react-latex-next";
 import { useEffect, useState } from "react";
-import styled from "styled-components"
-import Link from 'next/link';
-import axios from 'axios';
+import styled from "styled-components";
+import Link from "next/link";
+import axios from "axios";
 
 const Container = styled.div`
   padding: 0 2rem;
@@ -54,21 +54,20 @@ const Sp = styled.span`
   display: inline-block;
 `;
 const Hober = styled.a`
-    color: #351431;
-    text-decoration: none;
-    cursor: pointer;
-    &:hover ,
-    &:focus {
-        color: palevioletred;
-    }
-    &:active {
-        color: red;
-    }
+  color: #351431;
+  text-decoration: none;
+  cursor: pointer;
+  &:hover,
+  &:focus {
+    color: palevioletred;
+  }
+  &:active {
+    color: red;
+  }
 `;
 
-
 const LaTex: NextPage = () => {
-  const [text, setText] = useState<any>('ここに式が表示されます.');
+  const [text, setText] = useState<any>("ここに式が表示されます.");
   const [data, setData] = useState<any>([]);
   const quationExample = `
   f(x) = f(0) + f'(0)x + \\frac{f''(0)}{2!}x^2 + \\frac{f'''(0)}{3!}x^3 + \\frac{f^{(3)}(0)}{4!}x^4 + \\cdots \\\\
@@ -78,22 +77,27 @@ const LaTex: NextPage = () => {
   \\\\ Press enter to convert.
   `;
   const handleChange = (e: any) => {
-    setText(() => "$" + e.target.value + "$")
-  }
+    setText(() => "$" + e.target.value + "$");
+  };
   const GetData = () => {
-    axios.get("https://mocaff.net/order").then((e) => {
+    axios.get("https://mocaff.net/order").then((e: any) => {
       setData(e.data);
-    })
-  }
+    });
+  };
 
   useEffect(() => {
     GetData();
-  }, [])
+  }, []);
   // console.log(doc);
   return (
     <Container>
       <Main>
-        <Title><Sp>LaTex</Sp><Sp>数式<Sp>変換</Sp></Sp></Title>
+        <Title>
+          <Sp>LaTex</Sp>
+          <Sp>
+            数式<Sp>変換</Sp>
+          </Sp>
+        </Title>
         <Equation onChange={handleChange} defaultValue={quationExample} />
         <Render>
           <Latex>{text}</Latex>
@@ -104,16 +108,11 @@ const LaTex: NextPage = () => {
           </Link>
         </p>
         {data.map((e: any, i: number) => {
-          return (
-            <div key={i}>
-              {e.title}
-            </div>
-          )
+          return <div key={i}>{e.title}</div>;
         })}
       </Main>
     </Container>
   );
+};
 
-}
-
-export default LaTex
+export default LaTex;
